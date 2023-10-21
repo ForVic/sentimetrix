@@ -9,7 +9,7 @@ from models.event import Event
 from models.text_event import TextEvent
 from models.sentiment import Sentiment 
 import uuid
-import utils
+import utils.utils
 
 app = Flask(__name__)
 
@@ -41,12 +41,12 @@ def receive_screenshot():
         return f'Error, interview: {interview_id} not found.', 404
     
     time = int(time.time())
-    image_sentiment = utils.classify_image(task.image)
+    image_sentiment = utils.classify_image(face_image)
     image = Image(face_image, screen_image, time, str(uuid.uuid1()), image_sentiment)
     data_rw.add_image_to_interview(interview_id, image)
 
-    task = QueueTask(interview_id, face_image, time)
-    update_queue_task(task)
+    # task = QueueTask(interview_id, face_image, time)
+    # update_queue_task(task)
     return 'Success', 200
 
 """
@@ -104,7 +104,7 @@ def process_transcript():
     text_events = []
     for caption in data_rw.read_vtt_to_captions(interview_id):
         text_event = TextEvent(caption.text.strip(), (caption.start, caption.end))
-        sentiment: Sentiment = utils.get_sentiment(text_event)
+        sentiment: Sentiment = utils.classify_text(text_event)
         text_event.add_sentiment(sentiment)
         text_events.append(text_event)
     data_rw.add_text_events(interview_id, text_events)
@@ -112,10 +112,10 @@ def process_transcript():
 
 def main():
     app.run(debug=True)
-    producer_thread = threading.Thread(target=producer)
-    consumer_thread = threading.Thread(target=consumer)
-    producer_thread.start()
-    consumer_thread.start()
+    # producer_thread = threading.Thread(target=producer)
+    # consumer_thread = threading.Thread(target=consumer)
+    # producer_thread.start()
+    # consumer_thread.start()
 
 if __name__ == '__main__':
     main()
