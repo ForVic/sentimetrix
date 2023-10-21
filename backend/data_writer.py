@@ -1,6 +1,6 @@
 import json
 
-class DataWriter:
+class DataReaderWriter:
     DATA_PREFIX = "/data/"
     def __init__(self):
         pass

@@ -2,15 +2,14 @@ from main import update_queue_task, queue_statuses, app
 from flask import request
 import time
 from queue_task import QueueTask, TaskType
-import data_writer
 import queue
-from data_writer import DataWriter
+from data_writer import DataReaderWriter
 import random
 import time
 import utils
 
 queue = queue.Queue()
-data_writer = DataWriter()
+data_rw = DataReaderWriter()
 queue_task = None
 queue_statuses = {}
 
@@ -34,10 +33,10 @@ def consumer():
             queue.task_done()
         elif task.type == TaskType.PROCESS:
             image_sentiment = utils.classify_image(task.image)
-            data_writer.update_image_sentiment(task.interview_id, image_sentiment)
+            data_rw.update_image_sentiment(task.interview_id, image_sentiment)
             rnd_sleep(.3)
         elif task.type == TaskType.START:
-            data_writer.new_sentiment_file(task.interview_id)
+            data_rw.new_sentiment_file(task.interview_id)
             queue_statuses[task.interview_id] = 'IN_PROGRESS'
             rnd_sleep(.3)
 
