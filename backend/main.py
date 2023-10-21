@@ -1,58 +1,67 @@
-from flask import Flask
-import random
-from queue_task import QueueTask, TaskType
-import queue
-from data_writer import DataWriter
+from flask import Flask, request
 import threading
-import time
-import utils
+from queue_task import producer, consumer, QueueTask, TaskType, update_queue_task, queue_statuses, data_writer
+import uuid
 
-queue = queue.Queue()
-data_writer = DataWriter()
-queue_task = None
 app = Flask(__name__)
-queue_statuses = {}
 
-def rnd_sleep(t):
-   time.sleep(t * random.random() * 2)
- 
-def producer():
-    global queue_task
-    if queue_task:
-        queue.put(QueueTask(queue_task.interview_id, queue_task.image, queue_task.time, queue_task.type))
-        queue_task = None
-        rnd_sleep(.1)
- 
-def consumer():
-    global queue_task
-    while True:
-        task: QueueTask = queue.get()
-        if task.type == TaskType.END:
-            queue_statuses[task.interview_id] = 'COMPLETED'
-            rnd_sleep(.1)
-            queue.task_done()
-        elif task.type == TaskType.PROCESS:
-            image_sentiment = utils.classify_image(task.image)
-            data_writer.update_image_sentiment(task.interview_id, image_sentiment)
-            rnd_sleep(.3)
-        elif task.type == TaskType.START:
-            data_writer.new_sentiment_file(task.interview_id)
-            queue_statuses[task.interview_id] = 'IN_PROGRESS'
-            rnd_sleep(.3)
+@app.route('/', methods=['GET'])
+def entry_point():
+    return '<p>Hello!</p>', 200
 
-        queue.task_done()
-        print(f"Consumed task: {task.interview_id} with type: {task.type}")
+@app.route('/v1/interview/start/', methods=['GET'])
+def interview_start():
+    new_uuid = uuid.uuid1()
+    new_queue_task = QueueTask(new_uuid, None, None, TaskType.START)
+    update_queue_task(new_queue_task)
+    return new_uuid, 200
 
-def update_queue_task(task: QueueTask):
-    global queue_task
-    queue_task = task
+@app.route('/v1/interview/end/<interview_id>', methods=['GET'])
+def interview_end(interview_id):
+    update_queue_task(QueueTask(interview_id, None, None, TaskType.END))
+    return 'Success', 200
+
+@app.route('/v1/interview/screenshot', methods=['POST'])
+def receive_screenshot():
+    request_body = request.get_json()
+    interview_id = request_body['interviewID']
+    if interview_id not in queue_statuses:
+        return f'Error, interview: {interview_id} not found.', 404
+    image = request_body['image']
+    task = QueueTask(interview_id, image, time.time())
+    update_queue_task(task)
+    return 'Success', 200
+
+"""
+This method should only be called once interview_status returns a 200 status code,
+indicating that the interview images are done processing.
+"""
+@app.route('/v1/interview/sentiment/<interview_id>', methods=['GET'])
+def interview_sentiment(interview_id):
+    if interview_id not in queue_statuses:
+        return 'Interview not found', 404
+    
+    interview_sentiment = data_writer.get_sentiment_data(interview_id)
+    return interview_sentiment, 200
+    
+
+@app.route('/v1/queue/status/<interview_id>', methods=['GET'])
+def interview_status(interview_id):
+    if interview_id not in queue_statuses:
+        return 'Interview not found', 500
+
+    if queue_statuses[interview_id] == 'COMPLETED':
+        return 'Completed', 200
+    else:
+        return 'Processing in progress', 404
+
 
 def main():
     app.run(debug=True)
-    # producer_thread = threading.Thread(target=producer)
-    # consumer_thread = threading.Thread(target=consumer)
-    # producer_thread.start()
-    # consumer_thread.start()
+    producer_thread = threading.Thread(target=producer)
+    consumer_thread = threading.Thread(target=consumer)
+    producer_thread.start()
+    consumer_thread.start()
 
 if __name__ == '__main__':
     main()
