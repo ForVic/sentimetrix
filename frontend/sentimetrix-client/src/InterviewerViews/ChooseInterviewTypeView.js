@@ -5,7 +5,6 @@ import InterviewChoiceComponent from "../InterviewerComponents/InterviewChoiceCo
 import { Link } from "react-router-dom";
 
 function ChooseInterviewTypeView() {
-  console.log("HIII");
   return (
     <div>
       <h1>Choose Interview Type</h1>
