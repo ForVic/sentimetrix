@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def entry_point():
-    return '<p>Hello!</p>', 200
+    return '<p>Sentimetrix!</p>', 200
 
 @app.route('/v1/interview/start/', methods=['GET'])
 def interview_start():
