@@ -1,6 +1,8 @@
 from flask import Flask, request
 import threading
-from queue_task import producer, consumer, QueueTask, TaskType, update_queue_task, queue_statuses, data_writer
+from queue_task import QueueTask, TaskType
+from queue_processing import update_queue_task, queue_statuses, data_writer, producer, consumer
+import time
 import uuid
 
 app = Flask(__name__)
