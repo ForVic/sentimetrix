@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from "react";
 import UploadEventsComponent from "../InterviewerComponents/UploadEventsComponent";
 import UploadIframeComponent from "../InterviewerComponents/UploadIframeComponent";
-import ShareLinkComponent from "../InterviewerComponents/ShareLinkComponent";
 import { Link, useParams } from "react-router-dom"; // Import Link for navigation
 
 import GenerateInterviewIdFunction from "../InterviewerFunctions/GenerateInterviewIdFunction";
@@ -38,12 +37,8 @@ const CreateInterviewView = () => {
       <h2>Upload Iframe</h2>
       <UploadIframeComponent />
 
-      {/* Share Link Component */}
-      <h2>Share Interview Link</h2>
-      <ShareLinkComponent interview_id={interview_id} />
-
       {/* Next Button */}
-      <Link to="/interview-in-progress">Next</Link>
+      <Link to={"/interview-in-progress/" + interview_id}>Next</Link>
     </div>
   );
 };

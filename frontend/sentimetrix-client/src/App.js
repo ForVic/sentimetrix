@@ -22,7 +22,7 @@ function App() {
           element={<CreateInterviewView />}
         />
         <Route
-          path="/interview-in-progress"
+          path="/interview-in-progress/:interviewId"
           element={<InterviewInProgressView />}
         />
         <Route path="/interview/:interviewId" element={<InterviewScreen />} />
