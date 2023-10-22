@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ChooseInterviewTypeView from "./InterviewerViews/ChooseInterviewTypeView";
 import CreateInterviewView from "./InterviewerViews/CreateInterviewView";
 import InterviewInProgressView from "./InterviewerViews/InterviewInProgressView"; // Import InterviewInProgressView
+import DataVisualizationView from "./InterviewerViews/DataVisualizationView";
 
 //ParticipantClient Views
 
@@ -26,6 +27,10 @@ function App() {
           element={<InterviewInProgressView />}
         />
         <Route path="/interview/:interviewId" element={<InterviewScreen />} />
+        <Route
+          path="/interview/data_viz/:interviewId"
+          element={<DataVisualizationView />}
+        />
       </Routes>
     </BrowserRouter>
   );
