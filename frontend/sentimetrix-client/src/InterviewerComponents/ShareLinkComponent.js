@@ -2,9 +2,9 @@
 
 import React from "react";
 
-function ShareLinkComponent() {
+function ShareLinkComponent({ interview_id }) {
   // Dummy interview link (you can replace this with your generated link)
-  const interviewLink = "https://example.com/interview/123456";
+  const interviewLink = "http://localhost:3000/interview/" + interview_id;
 
   const handleCopyLink = () => {
     // Logic to copy the link to the clipboard (you can implement this)
