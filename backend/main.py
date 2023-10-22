@@ -28,6 +28,8 @@ def interview_start():
 
 @app.route('/v1/interview/end/<interview_id>', methods=['GET'])
 def interview_end(interview_id):
+    queue_statuses[interview_id] = "COMPLETED"
+    data_rw.mark_interview_completed(interview_id)
     update_queue_task(QueueTask(interview_id, None, None, TaskType.END))
     return 'Success', 200
 

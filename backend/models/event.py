@@ -7,5 +7,5 @@ class Event:
         return {'event_name': self.event_name, 'timestamp': self.timestamp}
     
     @staticmethod
-    def from_json(self, json):
+    def from_json(json):
         return Event(json['event_name'], json['timestamp'])

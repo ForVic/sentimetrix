@@ -24,7 +24,7 @@ class DataReaderWriter:
         captions: WebVTT = webvtt.read(file_name)
         return captions
     
-    def update_image_sentiment(self, interview_id, screenshot):
+    def update_image_sentiment(self, interview_id, ):
         file_name = self.DATA_PREFIX + self.INTERVIEW_PREFIX + interview_id + '.json'
 
         with open(file_name, "r") as f:
@@ -98,7 +98,13 @@ class DataReaderWriter:
             json.dump(data, file)
     
     def get_sentiment_data(self, interview_id):
-        file_name = self.DATA_PREFIX + interview_id + '.json'
+        file_name = self.interview_file_name(interview_id)
         with open(file_name, r) as f:
             data = json.load(f)
         return data
+    
+    def mark_interview_completed(self, interview_id):
+        file_name = self.interview_file_name(interview_id)
+        with open(file_name, 'w') as f:
+            data = json.load(f)
+            data['processed'] = True
