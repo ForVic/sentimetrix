@@ -4,11 +4,13 @@ import React, { useState } from "react";
 import IframeComponent from "../ParticipantComponents/IframeComponent";
 import StartInterviewModal from "../ParticipantComponents/StartInterviewModal";
 import { useParams } from "react-router-dom"; // Import useParams
+import { fetchIframe } from "../ParticipantFunctions/fetchIFrameFunction";
 
 function InterviewScreen() {
   console.log("LOADED");
   const [isStartModalVisible, setStartModalVisible] = useState(true);
   const [isInterviewStarted, setInterviewStarted] = useState(false);
+  const [iframeSource, setIframeSource] = useState("");
 
   const { interviewId } = useParams(); // Get interviewId from URL
 
@@ -35,7 +37,7 @@ function InterviewScreen() {
       {isInterviewStarted && (
         <div>
           <h1>Interview Screen</h1>
-          <IframeComponent />
+          <div dangerouslySetInnerHTML={fetchIframe(interviewId)} /> 
           <button onClick={handleEndInterview} disabled={!isInterviewStarted}>
             End Interview
           </button>
