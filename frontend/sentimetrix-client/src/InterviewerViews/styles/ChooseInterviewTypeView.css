@@ -1,0 +1,16 @@
+/* src/InterviewerComponents/InterviewChoiceComponent.css */
+
+/* Card Container (Flexbox) */
+.section-wrapper {
+  padding-left:367px;
+  padding-right:367px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.sentimetrix-logo {
+  width: 190px;
+  padding-left: 40px;
+  padding-top: 10px;
+}
