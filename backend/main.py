@@ -10,8 +10,10 @@ from models.text_event import TextEvent
 from models.sentiment import Sentiment 
 import uuid
 import utils.utils
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/', methods=['GET'])
 def entry_point():
