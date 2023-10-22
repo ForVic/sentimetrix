@@ -5,6 +5,8 @@ import IframeComponent from "../ParticipantComponents/IframeComponent";
 import StartInterviewModal from "../ParticipantComponents/StartInterviewModal";
 import { useParams } from "react-router-dom"; // Import useParams
 import { fetchIframe } from "../ParticipantFunctions/fetchIFrameFunction";
+import captureScreenshotFunction from "../ParticipantFunctions/captureScreenshotFunction";
+import CaptureWebcam from "../ParticipantFunctions/webcam";
 
 function InterviewScreen() {
   console.log("LOADED");
@@ -22,22 +24,24 @@ function InterviewScreen() {
           setIframeSource(iframeString);
         } catch (error) {
           console.error("Error fetching iframeString:", error);
-          // Handle error conditions as needed
         }
       }
   
       fetchIframeWrapper();
     }, []);
 
-
+  let intervalId;
 
   const handleStartInterview = () => {
     setStartModalVisible(false);
     setInterviewStarted(true);
+    // intervalId = startCapturing();
   };
 
   const handleEndInterview = () => {
     // Logic to end the interview (you can implement this)
+    // stopCapturing(intervalId);
+    console.log("stop caturing ")
   };
 
   return (
@@ -58,6 +62,7 @@ function InterviewScreen() {
           <button onClick={handleEndInterview} disabled={!isInterviewStarted}>
             End Interview
           </button>
+          <CaptureWebcam />
         </div>
       )}
     </div>
