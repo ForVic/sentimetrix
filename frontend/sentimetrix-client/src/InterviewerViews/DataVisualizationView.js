@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom"; // Import useParams
 import PolygonDataComponent from "../InterviewerComponents/PolygonDataComponent";
+import TimeseriesDataComponent from "../InterviewerComponents/TimeseriesDataComponent";
 import "./styles/dataviz.css";
 import React, { useEffect, useState } from "react";
 import { BsArrowReturnLeft } from "react-icons/bs";
@@ -60,8 +61,13 @@ function DataVisualizationView() {
             value={timeInterval + 1}
             onChange={handleChangeTimeInterval}
           />
-          <div className="polygon-wrapper">
-            <PolygonDataComponent input={sentiment} />
+          <div className="dataviz-wrapper">
+            <div className="polygon-wrapper">
+              <PolygonDataComponent input={sentiment} />
+            </div>
+            <div className="timeseries-wrapper">
+              <TimeseriesDataComponent input={interview} />
+            </div>
           </div>
         </div>
       )}
