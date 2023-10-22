@@ -4,9 +4,11 @@ import React from "react";
 import UploadEventsComponent from "../InterviewerComponents/UploadEventsComponent";
 import UploadIframeComponent from "../InterviewerComponents/UploadIframeComponent";
 import ShareLinkComponent from "../InterviewerComponents/ShareLinkComponent";
-import { Link } from "react-router-dom"; // Import Link for navigation
+import { Link, useParams } from "react-router-dom"; // Import Link for navigation
 
 function CreateInterviewView() {
+  const { interviewType } = useParams(); // Get interviewId from URL
+
   return (
     <div>
       <h1>Create Interview</h1>

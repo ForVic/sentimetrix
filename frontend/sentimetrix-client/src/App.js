@@ -17,7 +17,10 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<ChooseInterviewTypeView />} />
-        <Route path="/create-interview" element={<CreateInterviewView />} />
+        <Route
+          path="/create-interview/:interviewType"
+          element={<CreateInterviewView />}
+        />
         <Route
           path="/interview-in-progress"
           element={<InterviewInProgressView />}
