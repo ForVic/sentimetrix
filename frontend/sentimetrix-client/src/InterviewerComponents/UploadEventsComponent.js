@@ -1,7 +1,6 @@
 // src/InterviewerComponents/UploadEventsComponent.js
 import React, { useState } from "react";
 import "./styles/events.css";
-import "./styles/editondbl.css";
 import { AiOutlineInfoCircle, AiOutlinePlusCircle } from "react-icons/ai";
 import { BsTrash } from "react-icons/bs";
 
