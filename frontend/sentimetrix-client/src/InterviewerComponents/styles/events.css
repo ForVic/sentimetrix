@@ -1,31 +1,33 @@
 .horizontal-line {
   border-top: 1px solid #d9d9d9;
-  width: 40%;
+  width: 90%;
   margin-left: 1%;
 }
 
 .horizontal-line-nested {
   border-top: 1px solid #d9d9d9;
-  width: 40%;
-  margin-left: 0%;
+  width: 90%;
+  margin-left: 1%;
 }
 
 .event-timestamp-title {
   font-size: 16px;
   color: black;
+  margin-left: 2%;
   margin-bottom: 5px;
 }
 .event-button {
   margin-top: 20px;
   margin-left: 1%;
   width: 150px;
-  height: 30px;
+  height: 38px;
   font-size: 16px;
   border: none;
-  color: black;
+  color: white;
+  background-color: #0b56ef;
   cursor: pointer;
   justify-content: space-between;
-  border-radius: 7px;
+  border-radius: 100px;
 }
 
 .event-button span {
@@ -36,7 +38,7 @@
 }
 
 .event-button:hover {
-  background-color: rgb(186, 186, 247);
+  box-shadow: 0px 4px 25px 0px rgba(11, 86, 239, 0.25);
 }
 
 .event-timestamp-container {
@@ -46,7 +48,7 @@
 }
 
 .event-input-button-container {
-  margin-left: 1%;
+  margin-left: 2%;
   align-items: center;
   margin-top: 10px;
   display: flex;
@@ -54,8 +56,7 @@
 
 .event-input {
   margin-top: 20px;
-  margin-left: 1%;
-  width: 150px;
+  width: 270px;
   height: 30px;
   font-size: 16px;
   border: none;
@@ -63,4 +64,13 @@
   cursor: pointer;
   justify-content: space-between;
   border-radius: 7px;
+}
+
+.insert-event-input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  margin-bottom: 10px;
+  resize: none;
 }

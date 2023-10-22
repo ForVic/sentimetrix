@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import UploadEventsComponent from "../InterviewerComponents/UploadEventsComponent";
 import UploadIframeComponent from "../InterviewerComponents/UploadIframeComponent";
 import { Link, useParams, useNavigate } from "react-router-dom"; // Import Link for navigation
+import sentimetrixLogo from "../imgs/sentimetrix_logo.png";
 
 import GenerateInterviewIdFunction from "../InterviewerFunctions/GenerateInterviewIdFunction";
 import setInterviewIframeFunction from "../InterviewerFunctions/SetInterviewIframeFunction";
@@ -13,6 +14,8 @@ const CreateInterviewView = () => {
   const navigate = useNavigate();
   const { interviewType } = useParams(); // Get interviewId from URL
   const [interview_id, setInterviewId] = useState(null);
+  const [events, setEvents] = useState([]);
+  const [iframe, setIframe] = useState("");
 
   // Use useEffect to call the GenerateInterviewIdFunction
   useEffect(() => {
@@ -34,8 +37,7 @@ const CreateInterviewView = () => {
     try {
       // Call your setInterviewIframeFunction and setInterviewEventFunction here
       // Pass the interview_id and relevant data (iframeString and events) as arguments
-      const iframeString = '<iframe ="https://www.w3schools.com"></iframe>';
-      const events = "your events data here";
+      const iframeString = iframe;
       await setInterviewIframeFunction(interview_id, iframeString);
       await setInterviewEventFunction(interview_id, events);
 
@@ -49,18 +51,25 @@ const CreateInterviewView = () => {
 
   return (
     <div>
-      <h1>Create Interview</h1>
+      <img
+        className="sentimetrix-logo"
+        src={sentimetrixLogo}
+        alt="Sentimetrix"
+      />
 
-      {/* Upload Events Component */}
-      <h2>Upload Events</h2>
-      <UploadEventsComponent />
-
-      {/* Upload Iframe Component */}
-      <h2>Upload Iframe</h2>
-      <UploadIframeComponent />
-
-      {/* Next Button */}
-      <button onClick={handleNextClick}>Next</button>
+      <div className="create-interview-container">
+        <div className="create-timestamp">
+          <UploadEventsComponent events={events} setEvents={setEvents} />
+        </div>
+        <div className="insert-iframe">
+          <UploadIframeComponent iframeUrl={iframe} setIframeUrl={setIframe} />
+        </div>
+      </div>
+      <div className="interview-button-container">
+        <button className="interview-button" onClick={handleNextClick}>
+          Next
+        </button>
+      </div>
     </div>
   );
 };

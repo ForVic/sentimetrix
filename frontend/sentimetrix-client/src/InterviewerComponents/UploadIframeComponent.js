@@ -4,9 +4,7 @@ import React, { useState } from "react";
 import "./styles/iframe.css";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 
-function UploadIframeComponent() {
-  const [iframeUrl, setIframeUrl] = useState("");
-
+function UploadIframeComponent({ iframeUrl, setIframeUrl }) {
   const handleIframeUpload = (e) => {
     setIframeUrl(e.target.value);
   };
@@ -29,6 +27,7 @@ function UploadIframeComponent() {
           type="text"
           className="iframe-input"
           placeholder="Your iFrame tag here..."
+          onChange={handleIframeUpload}
         />
       </div>
     </div>

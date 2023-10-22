@@ -1,5 +1,5 @@
 class Event:
-    def __init__(self, event_name: str, timestamp: int):
+    def __init__(self, event_name: str, timestamp: str):
         self.event_name = event_name
         self.timestamp = timestamp
     
