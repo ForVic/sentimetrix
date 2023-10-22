@@ -1,6 +1,6 @@
 // src/ParticipantViews/InterviewScreen.js
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import IframeComponent from "../ParticipantComponents/IframeComponent";
 import StartInterviewModal from "../ParticipantComponents/StartInterviewModal";
 import { useParams } from "react-router-dom"; // Import useParams
@@ -13,6 +13,23 @@ function InterviewScreen() {
   const [iframeSource, setIframeSource] = useState("");
 
   const { interviewId } = useParams(); // Get interviewId from URL
+
+    // Use useEffect to call the fetchIframe function
+    useEffect(() => {
+      async function fetchIframeWrapper() {
+        try {
+          const iframeString = await fetchIframe();
+          setIframeSource(iframeString);
+        } catch (error) {
+          console.error("Error fetching iframeString:", error);
+          // Handle error conditions as needed
+        }
+      }
+  
+      fetchIframeWrapper();
+    }, []);
+
+
 
   const handleStartInterview = () => {
     setStartModalVisible(false);
@@ -37,7 +54,7 @@ function InterviewScreen() {
       {isInterviewStarted && (
         <div>
           <h1>Interview Screen</h1>
-          <div dangerouslySetInnerHTML={fetchIframe(interviewId)} /> 
+          <div dangerouslySetInnerHTML={{__html: iframeSource}} /> 
           <button onClick={handleEndInterview} disabled={!isInterviewStarted}>
             End Interview
           </button>
