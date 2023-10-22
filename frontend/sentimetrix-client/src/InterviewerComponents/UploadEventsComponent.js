@@ -1,25 +1,97 @@
 // src/InterviewerComponents/UploadEventsComponent.js
 import React, { useState } from "react";
-import { AiOutlineInfoCircle } from "react-icons/ai";
+import "./styles/events.css";
+import "./styles/editondbl.css";
+import { AiOutlineInfoCircle, AiOutlinePlusCircle } from "react-icons/ai";
+import { BsTrash } from "react-icons/bs";
 
 function UploadEventsComponent() {
-  const [events, setEvents] = useState("");
+  const [events, setEvents] = useState([]);
+  const [currEvent, setCurrEvent] = useState("");
+  const [currTimestamp, setCurrTimestamp] = useState("");
 
-  const handleEventsUpload = (e) => {
-    setEvents(e.target.value);
+  const handleAddEvent = () => {
+    if (currEvent === "" || currTimestamp === "") {
+      return;
+    }
+    let newEvents = events.concat([
+      { name: currEvent, timestamp: currTimestamp },
+    ]);
+    setEvents(newEvents);
+    setCurrEvent("");
+    setCurrTimestamp("");
+  };
+
+  const handleEditCurrEvent = (e) => {
+    setCurrEvent(e.target.value);
+  };
+
+  const handleEditCurrTimestamp = (e) => {
+    setCurrTimestamp(e.target.value);
+  };
+
+  const handleDelete = (index) => {
+    let arr = [...events];
+    arr.splice(index, 1);
+    setEvents(arr);
   };
 
   return (
     <div>
-      <div className="insert-iframe-component">
-        <div className="step-title">Step 1</div>
-        <div className="insert-iframe-input">
-          <div className="insert-iframe-title">Create Timestamps</div>
-          <div className="info-icon-container">
-            <AiOutlineInfoCircle />
+      <div>
+        <div className="insert-iframe-component">
+          <div className="step-title">Step 1</div>
+          <div className="insert-iframe-input">
+            <div className="insert-iframe-title">Create Timestamps</div>
+            <div className="info-icon-container">
+              <AiOutlineInfoCircle />
+              <span className="tooltiptext">
+                {" "}
+                Indicate the timestamp for the events in your interview
+              </span>
+            </div>
+          </div>
+          <div className="insert-iframe-input">
+            <div className="step-title">Event Name</div>
+            <div className="step-title">Timestamp</div>
+            <div className="step-title"></div>
           </div>
         </div>
-        <div className="step-title"></div>
+        <div className="horizontal-line"></div>
+        {events.map((event, index) => {
+          return (
+            <div className="event-timestamp-container">
+              <div className="insert-iframe-input">
+                <div className="event-timestamp-title">{event.name}</div>
+                <div className="event-timestamp-title">{event.timestamp}</div>
+                <BsTrash onClick={() => handleDelete(index)} />
+              </div>
+              <div className="horizontal-line-nested"></div>
+            </div>
+          );
+        })}
+        <div className="event-input-button-container">
+          <input
+            className="event-input"
+            type="text"
+            placeholder="Event name..."
+            onChange={handleEditCurrEvent}
+            value={currEvent}
+          />
+          <input
+            className="event-input"
+            type="text"
+            placeholder="Timestamp (MM:SS)..."
+            onChange={handleEditCurrTimestamp}
+            value={currTimestamp}
+          />
+          <button onClick={handleAddEvent} className="event-button">
+            <span>
+              <AiOutlinePlusCircle />
+              Add Event
+            </span>
+          </button>
+        </div>
       </div>
     </div>
   );
