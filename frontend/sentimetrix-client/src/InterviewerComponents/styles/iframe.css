@@ -41,7 +41,7 @@
 }
 
 .iframe-input {
-  width: 40%;
+  width: 80%;
   height: 200px;
   padding: 10px;
   border: 1px solid #d9d9d9;
@@ -52,7 +52,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 40%;
+  width: 80%;
   margin-bottom: 10px;
   resize: none;
 }

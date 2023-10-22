@@ -1,0 +1,237 @@
+{
+  "interview_id": "0c2199dc-707e-11ee-bd48-3e22fbabe372",
+  "events": [
+    {
+      "event_name": "OPENING THE APP",
+      "timestamp": "0:00:08.000"
+    },
+    {
+      "event_name": "FINDING AN ITEM",
+      "timestamp": "0:01:24.000"
+    },
+    {
+      "event_name": "ADDING TO CART",
+      "timestamp": "0:18:27.000"
+    }
+  ],
+  "images": [
+    {
+      "face_image": "this will be a bytestring later",
+      "screen_image": "this will be a bytestring later",
+      "time": "0:01:24.000",
+      "image_id": "1",
+      "sentiment": [
+        {
+          "score": 0.3988706171512604,
+          "label": "sad"
+        },
+        {
+          "score": 0.21660661697387695,
+          "label": "happy"
+        },
+        {
+          "score": 0.1625610888004303,
+          "label": "fear"
+        },
+        {
+          "score": 0.09576413035392761,
+          "label": "neutral"
+        },
+        {
+          "score": 0.07485603541135788,
+          "label": "surprise"
+        }
+      ]
+    },
+    {
+      "face_image": "this will be a bytestring later",
+      "screen_image": "this will be a bytestring later",
+      "time": "0:05:45.000",
+      "image_id": "2",
+      "sentiment": [
+        {
+          "score": 0.3988706171512604,
+          "label": "sad"
+        },
+        {
+          "score": 0.21660661697387695,
+          "label": "happy"
+        },
+        {
+          "score": 0.5625610888004303,
+          "label": "fear"
+        },
+        {
+          "score": 0.19576413035392761,
+          "label": "neutral"
+        },
+        {
+          "score": 0.87485603541135788,
+          "label": "surprise"
+        }
+      ]
+    },
+    {
+      "face_image": "this will be a bytestring later",
+      "screen_image": "this will be a bytestring later",
+      "time": "0:10:15.000",
+      "image_id": "3",
+      "sentiment": [
+        {
+          "score": 0.1988706171512604,
+          "label": "sad"
+        },
+        {
+          "score": 0.51660661697387695,
+          "label": "happy"
+        },
+        {
+          "score": 0.2625610888004303,
+          "label": "fear"
+        },
+        {
+          "score": 0.09576413035392761,
+          "label": "neutral"
+        },
+        {
+          "score": 0.07485603541135788,
+          "label": "surprise"
+        }
+      ]
+    }
+  ],
+  "iframe": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/2XyShmC-s5g?si=araDQY3dtdx_06HF\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen_image></iframe>",
+  "processed": true,
+  "text_events": [
+    {
+      "text": "Nathan Maruqez: hi, how are you?",
+      "time": ["0:01:24.000", "0:01:30.000"],
+      "sentiment": [
+        {
+          "score": 0.3988706171512604,
+          "label": "sad"
+        },
+        {
+          "score": 0.41660661697387695,
+          "label": "happy"
+        },
+        {
+          "score": 0.2625610888004303,
+          "label": "fear"
+        },
+        {
+          "score": 0.09576413035392761,
+          "label": "neutral"
+        },
+        {
+          "score": 0.07485603541135788,
+          "label": "surprise"
+        }
+      ]
+    },
+    {
+      "text": "Sarah: I'm doing well, thank you!",
+      "time": ["0:01:35.000", "0:01:40.000"],
+      "sentiment": [
+        {
+          "score": 0.1988706171512604,
+          "label": "sad"
+        },
+        {
+          "score": 0.21660661697387695,
+          "label": "happy"
+        },
+        {
+          "score": 0.5625610888004303,
+          "label": "fear"
+        },
+        {
+          "score": 0.09576413035392761,
+          "label": "neutral"
+        },
+        {
+          "score": 0.07485603541135788,
+          "label": "surprise"
+        }
+      ]
+    },
+    {
+      "text": "Nathan Maruqez: That's great to hear!",
+      "time": ["0:01:45.000", "0:01:50.000"],
+      "sentiment": [
+        {
+          "score": 0.3988706171512604,
+          "label": "sad"
+        },
+        {
+          "score": 0.21660661697387695,
+          "label": "happy"
+        },
+        {
+          "score": 0.1625610888004303,
+          "label": "fear"
+        },
+        {
+          "score": 0.09576413035392761,
+          "label": "neutral"
+        },
+        {
+          "score": 0.07485603541135788,
+          "label": "surprise"
+        }
+      ]
+    },
+    {
+      "text": "Sarah: I'm excited to try out this app. It looks promising.",
+      "time": ["0:02:00.000", "0:02:10.000"],
+      "sentiment": [
+        {
+          "score": 0.3988706171512604,
+          "label": "sad"
+        },
+        {
+          "score": 0.21660661697387695,
+          "label": "happy"
+        },
+        {
+          "score": 0.1625610888004303,
+          "label": "fear"
+        },
+        {
+          "score": 0.09576413035392761,
+          "label": "neutral"
+        },
+        {
+          "score": 0.07485603541135788,
+          "label": "surprise"
+        }
+      ]
+    },
+    {
+      "text": "Nathan Maruqez: I think you'll enjoy it. I've had a good experience with it so far.",
+      "time": ["0:02:15.000", "0:02:25.000"],
+      "sentiment": [
+        {
+          "score": 0.3988706171512604,
+          "label": "sad"
+        },
+        {
+          "score": 0.21660661697387695,
+          "label": "happy"
+        },
+        {
+          "score": 0.1625610888004303,
+          "label": "fear"
+        },
+        {
+          "score": 0.09576413035392761,
+          "label": "neutral"
+        },
+        {
+          "score": 0.07485603541135788,
+          "label": "surprise"
+        }
+      ]
+    }
+  ]
+}

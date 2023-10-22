@@ -1,5 +1,5 @@
 class Sentiment:
-    def __init__(self, score: int, label: str):
+    def __init__(self, score: float, label: str):
         self.score = score
         self.label = label
 

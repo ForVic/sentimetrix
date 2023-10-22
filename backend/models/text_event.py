@@ -2,7 +2,7 @@ from typing import Tuple
 from models.sentiment import Sentiment
 
 class TextEvent:
-    def __init__(self,text: str, time: Tuple[int, int], sentiment: Sentiment=None):
+    def __init__(self,text: str, time: Tuple[str, str], sentiment: Sentiment=None):
         self.text = text
         self.time = time
         self.sentiment = sentiment

@@ -1,4 +1,5 @@
 from flask import Flask, request
+import json
 from models.image import Image
 import threading
 from queue_task import QueueTask, TaskType
@@ -59,9 +60,13 @@ indicating that the interview images are done processing.
 """
 @app.route('/v1/interview/sentiment/<interview_id>', methods=['GET'])
 def interview_sentiment(interview_id):
+    if str(interview_id) == '1':
+        with open("./test.json", "r") as f:
+            data = json.load(f)
+        return data, 200
     if interview_id not in queue_statuses:
         return 'Interview not found', 404
-    
+
     interview_sentiment = data_rw.get_sentiment_data(interview_id)
     return interview_sentiment, 200
     
